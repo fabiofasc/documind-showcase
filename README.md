@@ -5,6 +5,24 @@ Independent Project · April 2026
 
 ---
 
+## Live demo (Italian edition)
+
+A public demo for Italian accountants is online at **https://demo.fabiofasciglione.it**. You ask a question in Italian and get an
+answer with the source document, page and publication date, over public guides and circulars from the Agenzia delle Entrate
+and INPS. Access is by code: write to me through [fabiofasciglione.it](https://www.fabiofasciglione.it) to get one.
+The demo runs on a small shared VPS (about 125 MB of RAM at idle for the whole application) with daily usage limits; there is no document upload.
+
+| Home with example questions | Answer with cited sources |
+|---|---|
+| ![DocuMind demo home: Italian UI with clickable example questions](docs/demo-home.jpg) | ![DocuMind demo answer: Italian answer with [Fonte: title, p. N, updated] citations and the retrieved passages](docs/demo-answer.jpg) |
+
+Since this paper was written the system moved to multilingual embeddings (`jina-embeddings-v3`), page-aware chunking,
+a citation check that compares every citation with the retrieved chunks, and access limits. On 10 questions over 5 real
+Agenzia delle Entrate PDFs, the correct passage was the top result for 6 questions with the multilingual model against 1 with
+the English-only one. The sections below describe the original architecture.
+
+---
+
 ## Abstract
 
 We present **DocuMind**, a full-stack Retrieval-Augmented Generation (RAG) system designed for open-domain question answering over user-provided documents. The system combines dense vector retrieval with a large language model (LLM) backend to produce accurate, source-grounded answers from heterogeneous document collections (PDF, DOCX, TXT). DocuMind is containerised via Docker and deployable on commodity cloud platforms with no specialised infrastructure. Empirical evaluation on a representative document corpus demonstrates that source attribution is preserved end-to-end, reducing hallucination risk inherent to purely generative approaches. The full codebase is available as a private repository; this document serves as a technical reference and reproducibility guide.
